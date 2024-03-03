@@ -1,0 +1,33 @@
+program            ::= statement*
+
+statement          ::= "class" identifier "{" method* "}"
+
+method             ::= "method" identifier "(" parameter-list? ")" "{" statement* "}"
+
+parameter-list     ::= identifier ("," identifier)*
+
+statement          ::= "print" "(" expression ")" ";"
+                   |  "if" "(" expression ")" "{" statement* "}" ("else" "{" statement* "}")?
+                   |  "while" "(" expression ")" "{" statement* "}"
+                   |  identifier "=" expression ";"
+
+expression         ::= literal
+                   |  identifier
+                   |  expression binary-operator expression
+                   |  unary-operator expression
+                   |  "(" expression ")"
+                   |  function-call
+
+literal            ::= integer
+                   |  floating-point
+                   |  string
+                   |  char
+                   |  boolean
+
+binary-operator    ::= "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "&&" | "||"
+
+unary-operator     ::= "++" | "--" | "!" | "-"
+
+function-call      ::= identifier "(" argument-list? ")"
+
+argument-list      ::= expression ("," expression)*
